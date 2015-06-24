@@ -15,10 +15,7 @@ import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
 import javax.mail.Store;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.util.*;
 
 /**
@@ -61,7 +58,12 @@ public abstract class AbstractServer extends Thread implements Service {
         if (setup.isSecure()) {
             return DummySSLServerSocketFactory.getDefault().createServerSocket(setup.getPort(), 0, bindTo);
         } else {
-            return new ServerSocket(setup.getPort(), 0, bindTo);
+            ServerSocket tmpSocket = new ServerSocket();
+            tmpSocket.setReuseAddress(true);
+            tmpSocket.bind(new InetSocketAddress(bindTo, setup.getPort()),0);
+            return tmpSocket;
+
+//            return new ServerSocket(setup.getPort(), 0, bindTo);
         }
     }
 
@@ -99,7 +101,6 @@ public abstract class AbstractServer extends Thread implements Service {
     protected synchronized void initServerSocket() {
         try {
             serverSocket = openServerSocket();
-            serverSocket.setReuseAddress(true);
         } catch (IOException e) {
             final String msg = "Can not open server socket for " + toString();
             log.error(msg, e);

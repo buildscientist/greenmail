@@ -88,19 +88,32 @@ public class DummySSLServerSocketFactory extends SSLServerSocketFactory {
     }
 
     public ServerSocket createServerSocket() throws IOException {
-        return addAnonCipher(factory.createServerSocket());
+        ServerSocket tmpSocket = factory.createServerSocket();
+        tmpSocket.setReuseAddress(true);
+        return addAnonCipher(tmpSocket);
+//        return addAnonCipher(factory.createServerSocket());
     }
 
     public ServerSocket createServerSocket(int i) throws IOException {
-        return addAnonCipher(factory.createServerSocket(i));
+        ServerSocket tmpSocket = factory.createServerSocket(i);
+        tmpSocket.setReuseAddress(true);
+        return addAnonCipher(tmpSocket);
+
+//        return addAnonCipher(factory.createServerSocket(i));
     }
 
     public ServerSocket createServerSocket(int i, int i1) throws IOException {
-        return addAnonCipher(factory.createServerSocket(i, i1));
+        ServerSocket tmpSocket = factory.createServerSocket(i,i1);
+        tmpSocket.setReuseAddress(true);
+        return addAnonCipher(tmpSocket);
+//        return addAnonCipher(factory.createServerSocket(i, i1));
     }
 
     public ServerSocket createServerSocket(int i, int i1, InetAddress inetAddress) throws IOException {
-        return addAnonCipher(factory.createServerSocket(i, i1, inetAddress));
+        ServerSocket tmpSocket = factory.createServerSocket(i,i1, inetAddress);
+        tmpSocket.setReuseAddress(true);
+        return addAnonCipher(tmpSocket);
+//        return addAnonCipher(factory.createServerSocket(i, i1, inetAddress));
     }
 
     public String[] getDefaultCipherSuites() {
