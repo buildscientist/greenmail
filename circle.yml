@@ -19,18 +19,22 @@ test:
  - sudo update-alternatives --set javac "/usr/lib/jvm/jdk1.6.0/bin/javac"
  - mvn clean install -DskipTests
  - mvn test
+ - sleep 30
  - sudo update-alternatives --set java "/usr/lib/jvm/jdk1.7.0/bin/java"
  - sudo update-alternatives --set javac "/usr/lib/jvm/jdk1.7.0/bin/javac"
  - mvn clean install -DskipTests
  - mvn test
+ - sleep 30
  - sudo update-alternatives --set java "/usr/lib/jvm/jdk1.8.0/bin/java"
  - sudo update-alternatives --set javac "/usr/lib/jvm/jdk1.8.0/bin/javac"
  - mvn clean install -DskipTests
  - mvn test
+ - sleep 30
  - sudo update-alternatives --set java "/usr/lib/jvm/java-6-openjdk-amd64/jre/bin/java"
  - sudo update-alternatives --set javac "/usr/lib/jvm/java-6-openjdk-amd64/bin/javac"
  - mvn clean install -DskipTests
  - mvn test
+ - sleep 30
  - sudo update-alternatives --set java "/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java"
  - sudo update-alternatives --set javac "/usr/lib/jvm/java-7-openjdk-amd64/bin/javac"
  - mvn clean install -DskipTests
