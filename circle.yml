@@ -4,6 +4,8 @@ general:
 machine:
  timezone:
   UTC
+ override:
+- sudo sysctl net.netfilter.nf_conntrack_tcp_timeout_close_wait=1
 
 dependencies:
  override:
