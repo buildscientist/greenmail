@@ -4,6 +4,7 @@ general:
 machine:
  pre:
   - sudo sysctl net.netfilter.nf_conntrack_tcp_timeout_close_wait=1
+  - sudo sysctl net.ipv4.tcp_tw_recycle=1
  timezone:
   UTC 
 
@@ -19,22 +20,22 @@ test:
  - sudo update-alternatives --set javac "/usr/lib/jvm/jdk1.6.0/bin/javac"
  - mvn clean install -DskipTests
  - mvn test
- - sleep 30
+ - sleep 90
  - sudo update-alternatives --set java "/usr/lib/jvm/jdk1.7.0/bin/java"
  - sudo update-alternatives --set javac "/usr/lib/jvm/jdk1.7.0/bin/javac"
  - mvn clean install -DskipTests
  - mvn test
- - sleep 30
+ - sleep 90
  - sudo update-alternatives --set java "/usr/lib/jvm/jdk1.8.0/bin/java"
  - sudo update-alternatives --set javac "/usr/lib/jvm/jdk1.8.0/bin/javac"
  - mvn clean install -DskipTests
  - mvn test
- - sleep 30
+ - sleep 90
  - sudo update-alternatives --set java "/usr/lib/jvm/java-6-openjdk-amd64/jre/bin/java"
  - sudo update-alternatives --set javac "/usr/lib/jvm/java-6-openjdk-amd64/bin/javac"
  - mvn clean install -DskipTests
  - mvn test
- - sleep 30
+ - sleep 90
  - sudo update-alternatives --set java "/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java"
  - sudo update-alternatives --set javac "/usr/lib/jvm/java-7-openjdk-amd64/bin/javac"
  - mvn clean install -DskipTests
