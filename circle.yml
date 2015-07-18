@@ -4,7 +4,6 @@ general:
 machine:
  pre:
   - sudo sysctl net.netfilter.nf_conntrack_tcp_timeout_close_wait=1
-  - sudo sysctl net.ipv4.tcp_tw_recycle=1
  timezone:
   UTC 
 
