@@ -2,6 +2,8 @@ general:
  build_dir: ./
 
 machine:
+ services:
+  - docker
  pre:
   - sudo sysctl net.netfilter.nf_conntrack_tcp_timeout_close_wait=1
  timezone:
@@ -9,36 +11,36 @@ machine:
 
 dependencies:
  override:
-  - mvn clean install -DskipTests
+  - docker run mvn clean install -DskipTests
  cache_directories:
   - "~/.m2/repository"
 
 test: 
  override:
- - sudo update-alternatives --set java "/usr/lib/jvm/jdk1.6.0/bin/java"
- - sudo update-alternatives --set javac "/usr/lib/jvm/jdk1.6.0/bin/javac"
- - mvn clean install -DskipTests
- - mvn test
- - sleep 30
- - sudo update-alternatives --set java "/usr/lib/jvm/jdk1.7.0/bin/java"
- - sudo update-alternatives --set javac "/usr/lib/jvm/jdk1.7.0/bin/javac"
- - mvn clean install -DskipTests
- - mvn test
- - sleep 30
- - sudo update-alternatives --set java "/usr/lib/jvm/jdk1.8.0/bin/java"
- - sudo update-alternatives --set javac "/usr/lib/jvm/jdk1.8.0/bin/javac"
- - mvn clean install -DskipTests
- - mvn test
- - sleep 30
- - sudo update-alternatives --set java "/usr/lib/jvm/java-6-openjdk-amd64/jre/bin/java"
- - sudo update-alternatives --set javac "/usr/lib/jvm/java-6-openjdk-amd64/bin/javac"
- - mvn clean install -DskipTests
- - mvn test
- - sleep 30
- - sudo update-alternatives --set java "/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java"
- - sudo update-alternatives --set javac "/usr/lib/jvm/java-7-openjdk-amd64/bin/javac"
- - mvn clean install -DskipTests
- - mvn test 
+ - docker run update-alternatives --set java "/usr/lib/jvm/jdk1.6.0/bin/java"
+ - docker run update-alternatives --set javac "/usr/lib/jvm/jdk1.6.0/bin/javac"
+ - docker run mvn clean install -DskipTests
+ - docker run mvn test
+ - docker restart
+ - docker run update-alternatives --set java "/usr/lib/jvm/jdk1.7.0/bin/java"
+ - docker run update-alternatives --set javac "/usr/lib/jvm/jdk1.7.0/bin/javac"
+ - docker run mvn clean install -DskipTests
+ - docker run mvn test
+ - docker restart
+ - docker run update-alternatives --set java "/usr/lib/jvm/jdk1.8.0/bin/java"
+ - docker run update-alternatives --set javac "/usr/lib/jvm/jdk1.8.0/bin/javac"
+ - docker run  mvn clean install -DskipTests
+ - docker run mvn test
+ - docker restart
+ - docker run update-alternatives --set java "/usr/lib/jvm/java-6-openjdk-amd64/jre/bin/java"
+ - docker run update-alternatives --set javac "/usr/lib/jvm/java-6-openjdk-amd64/bin/javac"
+ - docker run mvn clean install -DskipTests
+ - docker run mvn test
+ - docker restart
+ - docker run update-alternatives --set java "/usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java"
+ - docker run update-alternatives --set javac "/usr/lib/jvm/java-7-openjdk-amd64/bin/javac"
+ - docker run mvn clean install -DskipTests
+ - docker run mvn test 
 
  post:
   - mkdir -p $CIRCLE_TEST_REPORTS/junit/
