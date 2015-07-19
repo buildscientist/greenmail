@@ -15,7 +15,7 @@ dependencies:
 
 test: 
  override:
- - docker restart
+ - docker ps
  - sudo update-alternatives --set java "/usr/lib/jvm/jdk1.6.0/bin/java"
  - sudo update-alternatives --set javac "/usr/lib/jvm/jdk1.6.0/bin/javac"
  - mvn clean install -DskipTests
