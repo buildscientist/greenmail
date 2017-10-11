@@ -19,3 +19,4 @@ test:
  post:
   - mkdir -p $CIRCLE_TEST_REPORTS/junit/
   - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+  - mvn sonar:sonar -Dsonar.organization=greenmail -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN
